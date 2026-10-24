@@ -1,5 +1,5 @@
 <?php
-// Explicit, idempotent content upgrade. Never run automatically on page requests.
+// Content upgrade invoked by the versioned deployment upgrader or CLI helper.
 function apply_sporting_update(): void {
  $map=['/assets/images/pistol-training.webp'=>'/assets/images/manu-portrait.webp','/assets/images/rifle-training.webp'=>'/assets/images/indian-rifle.webp','/assets/images/range-practice.webp'=>'/assets/images/indoor-range.webp'];
  foreach(query('SELECT * FROM content')->fetchAll() as $row){$data=json_decode($row['data'],true);$changed=false;foreach($data as $key=>$value)if(is_string($value)&&isset($map[$value])){$data[$key]=$map[$value];$changed=true;}

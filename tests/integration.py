@@ -90,6 +90,27 @@ with tempfile.TemporaryDirectory(prefix='arsa-tests-') as tmp:
         data=form(admin.get('/superadmin/edit?type=branches')[1],'save_content');data.update(title='QA Test Range',slug='qa-range',status='published',**{'fields[city]':'QA City','fields[address]':'Test address for automated checks'})
         admin.post('/superadmin/edit?type=branches',data);check('Test address for automated checks' in public.get('/branches/qa-range')[1],'Branches added without code changes')
 
+        # Simulate a code deployment onto an older, populated production database.
+        before_enquiries=db.execute('select count(*) from enquiries').fetchone()[0]
+        home_row=db.execute("select id,data from content where type='settings' and slug='home'").fetchone()
+        old_home=json.loads(home_row['data']);old_home.update(heading='Learn shooting.',accent='Aim for more.',hero_image='/assets/images/pistol-training.webp')
+        db.execute('update content set data=? where id=?',(json.dumps(old_home),home_row['id']))
+        db.execute("delete from content where type='settings' and slug='research-2026-10'")
+        site_row=db.execute("select id,data from content where type='settings' and slug='site'").fetchone()
+        old_site=json.loads(site_row['data']);old_site['logo']=''
+        db.execute('update content set data=? where id=?',(json.dumps(old_site),site_row['id']));db.commit()
+        upgraded=public.get('/')[1]
+        check('Your ambition.' in upgraded and '/assets/images/academy-logo.webp' in upgraded and 'pistol-training.webp' not in upgraded,'Existing database upgrades branding on first deployed request')
+        backups=list((Path(tmp)/'backups').glob('*.sqlite'))
+        check(len(backups)==1,'Upgrade creates one protected database snapshot')
+        with sqlite3.connect(backups[0]) as snapshot:
+            saved=json.loads(snapshot.execute("select data from content where type='settings' and slug='home'").fetchone()[0])
+            check(saved['heading']=='Learn shooting.','Upgrade snapshot preserves old content for recovery')
+        check(db.execute('select count(*) from enquiries').fetchone()[0]==before_enquiries,'Content upgrade preserves enquiries')
+        data=form(admin.get('/superadmin/home')[1],'save_settings');data['fields[accent]']='QA CUSTOM AFTER UPGRADE'
+        admin.post('/superadmin/home',data)
+        check('QA CUSTOM AFTER UPGRADE' in public.get('/')[1] and len(list((Path(tmp)/'backups').glob('*.sqlite')))==1,'Upgrade runs once and preserves later CMS edits')
+
         event_data=form(admin.get('/superadmin/edit?type=events')[1],'save_content')
         event_data.update(title='QA Calendar Event',slug='qa-calendar-event',status='draft',**{'fields[date]':'2026-11-12','fields[time]':'10:00 AM','fields[summary]':'Calendar integration test'})
         admin.post('/superadmin/edit?type=events',event_data)

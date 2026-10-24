@@ -124,8 +124,11 @@ Research sources and image-generation brief are preserved alongside this file.
 
 Sporting redesign and verified academy content (24 October 2026)
 New installations seed the Indian media library, event calendar, Olympic coaching
-USP, coach profile and verified Sarabjot Singh result automatically. To upgrade
-an existing database, back it up, then run these commands from the application root:
+USP, coach profile and verified Sarabjot Singh result automatically. Existing deployments automatically apply this content upgrade once on the first
+request after deployment. A complete SQLite snapshot is saved under the protected
+storage/backups directory before changes; later CMS edits are preserved by the
+version marker. Enquiries and administrator credentials are retained.
+To apply the same upgrade explicitly using the CLI, run from the application root:
   php docs/apply-sporting-update.php
   php docs/apply-research-update.php
 The research update has a version marker and runs once, preserving later CMS edits.

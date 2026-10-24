@@ -108,3 +108,5 @@ function icon(string $name): string {
 require __DIR__ . '/schema.php';
 require __DIR__ . '/website-defaults.php';
 if (!(int)query('SELECT count(*) FROM content')->fetchColumn()) require __DIR__ . '/seed.php';
+require_once __DIR__.'/content-upgrades.php';
+upgrade_deployed_content();
