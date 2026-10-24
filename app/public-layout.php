@@ -7,7 +7,7 @@
  <meta property="og:title" content="<?=e($metaTitle)?>"><meta property="og:description" content="<?=e($metaDescription)?>"><meta property="og:type" content="website">
  <?php if(image_path($home['hero_image'] ?? '')): ?><meta property="og:image" content="<?=e(rtrim(env('APP_URL'),'/').$home['hero_image'])?>"><?php endif ?>
  <?php if(env('APP_ENV')!=='production' || $preview): ?><meta name="robots" content="noindex,nofollow"><?php endif ?>
- <link rel="icon" href="/assets/images/mark.svg" type="image/svg+xml">
+ <link rel="icon" href="/favicon.ico?v=2" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32.png?v=2"><link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png?v=2">
  <link rel="stylesheet" href="/assets/css/fonts.css"><link rel="stylesheet" href="/assets/css/site.css?v=6"><script src="/assets/js/site.js?v=3" defer></script>
 </head>
 <body>
