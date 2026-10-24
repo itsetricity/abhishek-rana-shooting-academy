@@ -12,8 +12,8 @@ function apply_website_defaults(): void {
         else query('INSERT INTO content(type,slug,title,status,data,updated_at) VALUES(?,?,?,?,?,?)',['pages',$slug,$page[0],'published',json_encode($data,JSON_UNESCAPED_UNICODE),now()]);
     }
     $programs=[
-        'air-rifle'=>['10m Air Rifle','Rifle training','Beginners & developing shooters','Learn balance, aiming and shot consistency with a precision air rifle.','/assets/images/rifle-training.webp'],
-        'air-pistol'=>['10m Air Pistol','Pistol training','Beginners & developing shooters','Work on your stance, trigger control and focus, one shot at a time.','/assets/images/pistol-training.webp'],
+        'air-rifle'=>['10m Air Rifle','Rifle training','Beginners & developing shooters','Learn balance, aiming and shot consistency with a precision air rifle.','/assets/images/indian-rifle.webp'],
+        'air-pistol'=>['10m Air Pistol','Pistol training','Beginners & developing shooters','Work on your stance, trigger control and focus, one shot at a time.','/assets/images/manu-portrait.webp'],
         'foundation'=>['Beginner Introduction','New to shooting?','First-time participants','Explore the sport, understand range safety and find the discipline you enjoy.','/assets/images/indoor-range.webp'],
     ];
     foreach($programs as $slug=>$program) {

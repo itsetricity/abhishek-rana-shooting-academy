@@ -62,7 +62,7 @@ with tempfile.TemporaryDirectory(prefix='arsa-tests-') as tmp:
         for _ in range(30):
             try: public.get('/');break
             except urllib.error.URLError: time.sleep(.1)
-        for route in ['/','/about','/programs','/programs/air-rifle','/branches','/coaches','/achievements','/gallery','/photo-credits','/competitions','/competitions/welcome','/admission','/demo-class','/contact','/privacy','/terms','/sitemap.xml','/robots.txt','/assets/fonts/barlow-condensed-800.ttf']:
+        for route in ['/','/about','/programs','/programs/air-rifle','/branches','/coaches','/achievements','/events','/events/introductory-demo','/gallery','/photo-credits','/competitions','/competitions/welcome','/admission','/demo-class','/contact','/privacy','/terms','/sitemap.xml','/robots.txt','/assets/fonts/barlow-condensed-800.ttf']:
             status,body,_=public.get(route);check(status==200 and 'Warning:' not in body and 'Fatal error' not in body,'Public route '+route)
         for route in ['/.env','/app/bootstrap.php','/storage/academy.sqlite','/docs/setup-vhost.py','/tests/integration.py','/perposal%20of%20website.pdf','/router.php']:
             check(public.get(route)[0]==403,'Private resource blocked '+route)
@@ -70,7 +70,7 @@ with tempfile.TemporaryDirectory(prefix='arsa-tests-') as tmp:
         check('Sign in to your academy workspace' in public.get('/superadmin')[1],'Admin requires authentication')
         login=admin.get('/superadmin/login')[1];data=form(login);data.update(username=env_values['ADMIN_USERNAME'],password=env_values['ADMIN_PASSWORD'])
         status,body,_=admin.post('/superadmin/login',data);check(status==200 and 'Your academy’s digital presence' in body,'Superadmin username/password login')
-        for route in ['/superadmin/cms','/superadmin/home','/superadmin/settings','/superadmin/content?type=branches','/superadmin/edit?type=programs','/superadmin/media','/superadmin/enquiries','/superadmin/demos','/superadmin/audit']:
+        for route in ['/superadmin/cms','/superadmin/home','/superadmin/settings','/superadmin/content?type=branches','/superadmin/content?type=events','/superadmin/edit?type=events','/superadmin/edit?type=programs','/superadmin/media','/superadmin/enquiries','/superadmin/demos','/superadmin/audit']:
             status,body,_=admin.get(route);check(status==200 and 'Warning:' not in body and 'Fatal error' not in body,'Admin route '+route)
         check(admin.post('/superadmin',{'action':'save_content','csrf':'bad'})[0]==419,'Admin rejects invalid CSRF')
         db=sqlite3.connect(testdb);db.row_factory=sqlite3.Row
@@ -90,6 +90,21 @@ with tempfile.TemporaryDirectory(prefix='arsa-tests-') as tmp:
         data=form(admin.get('/superadmin/edit?type=branches')[1],'save_content');data.update(title='QA Test Range',slug='qa-range',status='published',**{'fields[city]':'QA City','fields[address]':'Test address for automated checks'})
         admin.post('/superadmin/edit?type=branches',data);check('Test address for automated checks' in public.get('/branches/qa-range')[1],'Branches added without code changes')
 
+        event_data=form(admin.get('/superadmin/edit?type=events')[1],'save_content')
+        event_data.update(title='QA Calendar Event',slug='qa-calendar-event',status='draft',**{'fields[date]':'2026-11-12','fields[time]':'10:00 AM','fields[summary]':'Calendar integration test'})
+        admin.post('/superadmin/edit?type=events',event_data)
+        check('QA Calendar Event' not in public.get('/events')[1],'Draft calendar event hidden')
+        event_id=db.execute("select id from content where type='events' and slug='qa-calendar-event'").fetchone()[0]
+        event_data=form(admin.get(f'/superadmin/edit?type=events&id={event_id}')[1],'save_content');event_data['status']='published'
+        admin.post('/superadmin/edit?type=events',event_data)
+        event_page=public.get('/events')[1]
+        check('data-event-date="2026-11-12"' in event_page and 'QA Calendar Event' in event_page,'Published CMS event feeds calendar dates')
+        check('10:00 AM' in public.get('/events/qa-calendar-event')[1],'Event detail includes session time')
+        home_page=public.get('/')[1]
+        check(home_page.index('id="academy-live"')<home_page.index('Latest achievements')<home_page.index('id="programs"'),'Calendar and achievements precede training programs')
+        check('personal coach of Paris 2024 bronze medallist Sarabjot Singh' in home_page,'Verified Olympic coaching USP renders')
+        check(all(name not in home_page for name in ['pistol-training.webp','rifle-training.webp','range-practice.webp']),'Foreign athlete images absent from homepage')
+
         def submit(kind,name='QA Test Applicant'):
             route='/demo-class' if kind=='demo' else '/admission'; html=public.get(route)[1];data=form(html)
             data.update(name=name,email='qa@example.test',phone='9999999999',branch='Help me find a branch',program='10m Air Rifle',experience='First time',message='Test message',consent='1',started=str(int(time.time())-5))
@@ -108,7 +123,7 @@ with tempfile.TemporaryDirectory(prefix='arsa-tests-') as tmp:
         check('#request-' not in admin.last_url,'Mark as unread leaves the row collapsed rather than immediately reopening it')
         exported=admin.get('/superadmin/export?kind=enquiry')[1];check("'=1+2" in exported,'CSV export neutralises formula injection')
         homepage=public.get('/')[1]
-        check('pistol-training.webp' in homepage and 'hero.webp' not in homepage,'Homepage uses real sports photography')
+        check('coach-abhishek.webp' in homepage and 'hero.webp' not in homepage,'Homepage uses real sports photography')
         callback=form(homepage);callback.update(name='QA Callback Applicant',email='callback@example.test',phone='9999999999',experience='Regular shooter',consent='1',started=str(int(time.time())-5))
         status,body,_=public.post('/admission',callback)
         check(status==200 and 'Thank you. We’ll be in touch.' in body,'Homepage callback form shows a confirmation')
@@ -117,7 +132,7 @@ with tempfile.TemporaryDirectory(prefix='arsa-tests-') as tmp:
         callback['csrf']='invalid';public.post('/admission',callback)
         check(db.execute('select count(*) from enquiries where email=?',('callback@example.test',)).fetchone()[0]==1,'Callback rejects invalid CSRF without duplicating the request')
         credits=public.get('/photo-credits')[1]
-        check('Hemmers' in credits and 'Subhrasingh' in credits and 'creativecommons.org/licenses/by-sa/' in credits,'Real photos have public attribution and licence links')
+        check('Martin Rulsch' in credits and 'Subhrasingh' in credits and 'creativecommons.org/licenses/by-sa/' in credits,'Real photos have public attribution and licence links')
         check(submit('demo','QA Demo One')[0]==200,'First demo request saves');check(submit('demo','QA Demo Two')[0]==200,'Second demo request saves')
         demos=db.execute("select * from enquiries where kind='demo' order by id").fetchall();scheduled=time.strftime('%Y-%m-%d')+'T15:00'
         booking={'csrf':csrf,'action':'save_booking','booking_status':'Confirmed','scheduled_at':scheduled,'coach':'QA Coach','notes':'Confirmation test','id':demos[0]['id']}

@@ -121,3 +121,17 @@ phases from the proposal. No inactive future portal links masquerade as working
 features. Publication to an external hosting provider is not part of the local vhost.
 
 Research sources and image-generation brief are preserved alongside this file.
+
+Sporting redesign and verified academy content (24 October 2026)
+New installations seed the Indian media library, event calendar, Olympic coaching
+USP, coach profile and verified Sarabjot Singh result automatically. To upgrade
+an existing database, back it up, then run these commands from the application root:
+  php docs/apply-sporting-update.php
+  php docs/apply-research-update.php
+The research update has a version marker and runs once, preserving later CMS edits.
+Do not rerun apply-redesign.php on a customised live installation: it deliberately
+reapplies older base editorial defaults.
+Edit the Olympic story in Superadmin > Homepage. Edit scheduled dates through
+Public website CMS > Event calendar, and athlete results through Achievements.
+The homepage sorts published results newest-first; unconfirmed event dates remain TBA.
+Research evidence, media ownership and excluded uncertain facts: academy-research.txt.

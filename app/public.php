@@ -4,7 +4,7 @@ $home = array_replace(home_defaults(),settings('home'));
 $preview = isset($_GET['preview']) && is_admin();
 $route = trim($path,'/');
 $segments = explode('/',$route);
-$detailTypes = ['programs','branches','coaches','achievements','competitions'];
+$detailTypes = ['programs','branches','coaches','achievements','competitions','events'];
 $detail = null;
 $pageSlug = $segments[0] ?: 'home';
 if (count($segments) === 2 && in_array($segments[0],$detailTypes,true)) $detail = record($segments[0],$segments[1],$preview);

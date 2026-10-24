@@ -1,0 +1,41 @@
+Academy research — reviewed 24 October 2026
+
+Verified central USP
+Abhishek Rana is the personal coach of Olympic bronze medallist Sarabjot Singh. Abhishek Rana himself must NOT be described as an Olympic medallist or Olympic athlete. Manu Bhaker shared the mixed-team bronze but is NOT represented as this academy's pupil.
+
+Primary sources:
+- https://static.pib.gov.in/WriteReadData/specificdocs/documents/2024/jul/doc2024730360101.pdf
+  Government of India, 30 July 2024. Mixed team bronze, and support for trainer Abhishek Rana in Sarabjot's Olympic preparation.
+- https://www.issf-sports.org/athletes/SHINDM3009200101
+  Sarabjot's Olympic bronze, Munich/Bhopal individual World Cup golds, Baku mixed-team gold, junior results. Only Paris result currently imported; avoid inventing event dates for other results.
+- https://www.instagram.com/abhishekranashootingacademy/
+  Official bio: phone 9996760097; linked website arshootingacademy.in redirects to arshootingacademy.com.
+- https://www.instagram.com/p/DKf8nb3SFRM/
+  Academy reel, 5 June 2025; Sarabjot/Morini visit context. Caption contains hashtags, not proof of a supplier partnership or endorsement.
+- https://www.instagram.com/p/C_u3BoYyFrW/
+  Academy post, 10 September 2024, sharing newspaper coverage of Abhishek Rana and Sarabjot.
+- https://arshootingacademy.com/
+  Existing academy website. Coach portrait, academy crest and two academy posters imported. Homepage interview link https://www.youtube.com/watch?v=ElrQsNlRpt4. Publicly advertises mental conditioning and one-to-one online coaching. These offers require current scheduling confirmation.
+
+Independent corroboration:
+- https://www.newindianexpress.com/sport/other/2024/May/19/accidental-shooter-sarabjot-on-course-to-paris-olympics
+  Sarabjot's first-person account of training under Rana since 2016.
+- https://www.tribuneindia.com/news/haryana/olympic-medallist-sarabjot-gets-rousing-welcome-at-native-village/
+  Return of medallist and coach, August 2024.
+- https://indianexpress.com/article/cities/chandigarh/dav-college-student-wins-medals-asian-games-father-coach-remember-perseverance-8963450/
+  Academy/coaching and Asian Games coverage.
+- https://www.tribuneindia.com/news/schools/ops-vidya-mandir-ambala-inaugurates-basketball-court/
+  Identifies Rana as founder and chief coach, May 2025.
+- https://www.hindustantimes.com/sports/olympics/dear-diary-how-sarabjot-found-his-poise-again-101722361752776.html
+  Linked for readers, not reproduced. Describes coaching relationship beginning in 2016.
+
+Do not import unverified directory contact numbers, exact branch hours or six branch addresses. Historical press locates AR Shooting Academy at Central Phoenix Club, Ambala Cantt. Confirm current branch address before publishing directions.
+
+Existing website contains obvious template residue: unrelated website-development testimonials, dummy phone 9876543211 and generic address. These are intentionally excluded. Public Instagram phone is the strongest contact source. Do not copy unverified 500+ students or experience counters.
+
+Media
+Academy-owned website media: academy-logo.webp, coach-abhishek.webp, academy-training.webp, academy-moment.webp. These are not Creative Commons and remain academy property.
+Licensed Indian sport references and original source/license metadata: indian-photo-sources.json and sarabjot-photo-source.json. All credited in /photo-credits. Do not reintroduce Korean/European athlete reference assets. Imported international podium photograph was excluded because it contains foreign athletes.
+
+Calendar
+No future academy event dates verified. A public, undated demo-enquiry entry is labelled by prior confirmation. Real dates/locations can be published in Superadmin → Event calendar.

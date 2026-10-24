@@ -67,3 +67,7 @@ foreach($faqs as $i=>$faq) seed_record('faqs','question-'.($i+1),$faq[0],['answe
  db()->commit();
 require_once __DIR__.'/apply-website-defaults.php';
 apply_website_defaults();
+require_once __DIR__.'/sporting-update.php';
+apply_sporting_update();
+require_once __DIR__.'/research-update.php';
+apply_research_update();
