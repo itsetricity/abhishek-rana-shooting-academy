@@ -1,0 +1,76 @@
+NORTH INDIA SHOOTING ACADEMY WEBSITE BENCHMARK
+Reviewed: 24 October 2026
+Purpose: Improve information architecture and the visitor journey for ARSA's MVP.
+These are presentation observations, not independent verification of academy claims
+or evidence that one academy outperforms another.
+
+MURC — Delhi NCR
+https://murc.in/about-us/
+Observed: founder story, coach-led identity, trial-class calls to action, multiple
+location links, gallery and media coverage.
+ARSA response: connected branch directory, space for approved coaching profiles,
+athlete stories and a persistent, clear demo request journey. No copied biographies
+or unsupported credentials.
+
+Shoot O' Clock — Gurugram
+https://www.shootoclock.com/
+Observed in indexed official-site content: coach credentials are prominent, with
+quick WhatsApp/call actions and visible location and opening-hour information.
+ARSA response: bring official coach credentials and verified contact details into
+the CMS so the academy can publish them when available; clear mobile actions.
+The public website's indexed claims are treated as that academy's own claims.
+
+Sportsinn / Jaipur Shooting Academy — Jaipur
+https://sportsinn.in/about-us/
+Observed: detailed academy background, training disciplines, coach information,
+competition narrative and multiple branch contacts. Some generic template copy
+appears in the page; this is an opportunity for more precise, academy-specific
+content in ARSA's future editorial work.
+ARSA response: focused sporting narrative, useful program pages, less template
+clutter, explicit pathways and considered empty states pending verified content.
+
+Sharma Shooting Academy — Najafgarh, Delhi
+https://www.sharmashootingacademy.in/
+https://www.sharmashootingacademy.in/training
+Observed in indexed official-site content: experience-based pathways, trial/admission
+portal, facilities and planned features labelled as such.
+ARSA response: distinguish a request from a confirmed booking; keep unconfirmed
+branches and credentials in drafts; avoid claiming planned operational systems
+are already live.
+
+DESIGN AND CONTENT DECISIONS
+- Midnight navy, warm ivory and a restrained brass accent; disciplined typography.
+- One clear hero and a fictional adult sport-shooting athlete image.
+- Purposeful sequence: discipline selection, academy mindset, training journey,
+  branch discovery, notices, FAQs and next action.
+- Real server-rendered pages and persistent form submissions, with an operational
+  inbox behind authentication.
+- Clear initial branch placeholders in admin only, ready to expand.
+- No borrowed medals, testimonials, affiliations, age limits or fee claims.
+- Self-hosted fonts and images; no third-party tracking scripts or font requests.
+
+The supplied 11-page blueprint was used for academy naming, the expandable six-
+branch model, role roadmap, public sitemap, enquiry/demo distinction and the rule
+that website submissions must not activate student accounts. The user narrowed
+this first implementation to superadmin, public website and its CMS.
+
+
+PUBLIC WEBSITE REDESIGN — 24 OCTOBER 2026
+Additional references explicitly requested by the user:
+https://prime10xshootingrange.com/
+https://gurudronacharyashootingacademy.com/
+
+Reviewed both homepages and their visible navigation, trial/enquiry calls to action,
+training descriptions and galleries. The redesign prioritises plain language and
+a direct explanation of air rifle / air pistol training. It replaces the original
+condensed all-caps typography, slogan-heavy copy, target illustrations and generated
+hero image with readable sentence-case headings, real sports photography, clear
+program cards, a homepage callback form and a three-step introduction to joining.
+
+Four real Creative Commons reference images are saved locally, offered in every CMS
+image selector, and attributed publicly at /photo-credits. They are identified as
+reference photographs; no athlete or venue is presented as affiliated with ARSA.
+Original source URLs, licences and download metadata are in docs/photo-sources.json.
+All active section photos can be replaced through Homepage, Programs and Gallery
+inside the Website CMS. The previous source and database snapshot are preserved
+in tmp/before-redesign. Administrator credentials and existing enquiries are kept.

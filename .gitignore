@@ -1,0 +1,22 @@
+.env
+/storage/*
+!/storage/.htaccess
+/uploads/*
+!/uploads/.htaccess
+/tmp/
+.DS_Store
+
+# Supplied proposal and machine-specific local server setup.
+/perposal of website.pdf
+/docs/activate-local-vhost.sh
+/docs/setup-vhost.py
+/docs/shooting-academy.test.conf
+
+# Temporary databases, logs and editor files anywhere in the checkout.
+*.sqlite
+*.sqlite3
+*.sqlite-wal
+*.sqlite-shm
+*.log
+*.swp
+__pycache__/

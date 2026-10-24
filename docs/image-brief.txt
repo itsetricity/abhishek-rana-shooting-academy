@@ -1,0 +1,24 @@
+ASSET: assets/images/hero.webp
+Mode: built-in image_gen (imagegen skill). Generated PNG converted to WebP for web
+delivery. The generated source is retained in the Codex generated_images folder.
+Usage: illustrative homepage hero and gallery placeholder; replaceable in the CMS.
+Subject is fictional. It does not depict a claimed academy athlete or real facility.
+
+FINAL PROMPT
+Use case: photorealistic-natural. Asset type: premium Indian shooting sports academy
+website hero photograph, landscape 1536x1024. Create an editorial sports photograph
+of a fictional adult Indian female 10m air rifle athlete at an indoor competition
+training range. Profile view, athlete on right two thirds of frame facing left,
+precision air rifle shouldered and pointed left safely downrange, wearing navy and
+white stiff sport shooting jacket, hair in neat bun, shooting glasses, calm intensely
+focused expression. Equipment must look like an Olympic precision air rifle with
+silver barrel, blue stock and precise sights, no tactical or military equipment.
+Deep midnight blue shadows and warm soft natural highlights, cinematic yet realistic,
+shot on 85mm lens, shallow depth of field, very high quality, beautiful photographic
+grain, muted cool background with horizontal range architecture, enough negative
+space at left for crop flexibility, no text no logos no watermark. This is illustrative
+sport imagery, not a real identifiable athlete.
+
+FONT LICENCES
+Barlow Condensed and Manrope, from the Google Fonts distribution. Their original
+SIL Open Font Licence files are stored in assets/fonts/ alongside the fonts.
